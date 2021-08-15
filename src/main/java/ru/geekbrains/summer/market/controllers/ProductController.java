@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
+import ru.geekbrains.summer.market.controllers.filters.SpecificationFilterOfProductController;
 import ru.geekbrains.summer.market.dto.ProductDto;
 import ru.geekbrains.summer.market.model.Product;
 import ru.geekbrains.summer.market.repositories.specifications.ProductSpecifications;
@@ -11,6 +12,9 @@ import ru.geekbrains.summer.market.services.ProductService;
 import ru.geekbrains.summer.market.exceptions.ResourceNotFoundException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,17 +35,23 @@ public class ProductController {
             @RequestParam(name = "max_price", required = false) BigDecimal maxPrice,
             @RequestParam(name = "title", required = false) String title
     ) {
+        HashMap<String, Object> specificationList = new HashMap<>();
+        specificationList.put("min_price", minPrice);
+        specificationList.put("max_price", maxPrice);
+        specificationList.put("title", title);
+        SpecificationFilterOfProductController specFilter = new SpecificationFilterOfProductController(specificationList);
+        Specification<Product> spec = specFilter.getSpecification();
 
-        Specification<Product> spec = Specification.where(null);
-        if (minPrice != null) {
-            spec = spec.and(ProductSpecifications.priceGreaterThanOrEqualTo(minPrice));
-        }
-        if (maxPrice != null) {
-            spec = spec.and(ProductSpecifications.priceLessThanOrEqualTo(maxPrice));
-        }
-        if (title != null) {
-            spec = spec.and(ProductSpecifications.titleLike(title));
-        }
+//        Specification<Product> spec = Specification.where(null);
+//        if (minPrice != null) {
+//            spec = spec.and(ProductSpecifications.priceGreaterThanOrEqualTo(minPrice));
+//        }
+//        if (maxPrice != null) {
+//            spec = spec.and(ProductSpecifications.priceLessThanOrEqualTo(maxPrice));
+//        }
+//        if (title != null) {
+//            spec = spec.and(ProductSpecifications.titleLike(title));
+//        }
         return productService.findPage(pageIndex - 1, 5, spec).map(ProductDto::new);
     }
 
