@@ -28,11 +28,16 @@ public class ProductController {
     public Page<ProductDto> findAll(
             @RequestParam(name = "p", defaultValue = "1") int pageIndex,
             @RequestParam(name = "min_price", required = false) BigDecimal minPrice,
+            @RequestParam(name = "max_price", required = false) BigDecimal maxPrice,
             @RequestParam(name = "title", required = false) String title
     ) {
+
         Specification<Product> spec = Specification.where(null);
         if (minPrice != null) {
-            spec = spec.and(ProductSpecifications.priceGreaterOrEqualsThan(minPrice));
+            spec = spec.and(ProductSpecifications.priceGreaterThanOrEqualTo(minPrice));
+        }
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpecifications.priceLessThanOrEqualTo(maxPrice));
         }
         if (title != null) {
             spec = spec.and(ProductSpecifications.titleLike(title));
