@@ -16,6 +16,9 @@ angular.module('app').controller('productsController', function ($scope, $http, 
             method: 'GET',
             params: {
                 'p': pageIndex
+//                min_price: $scope.filter.min_price
+//                max_price: $scope.filter.max_price,
+//                title: $scope.filter.titleLike
             }
         }).then(function (response) {
             $scope.productsPage = response.data;

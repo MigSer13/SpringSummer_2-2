@@ -1,31 +1,55 @@
 <div>
-    <table class="table">
-        <thead>
-        <tr>
-            <td>ID</td>
-            <td>Название</td>
-            <td>Цена</td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="p in productsPage.content">
-            <td>{{p.id}}</td>
-            <td>{{p.title}}</td>
-            <td>{{p.price}}</td>
-            <td>
-                <button class="btn btn-primary" ng-click="addToCart(p.id)">В корзину</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form novalidate ng-submit="loadPage()">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>
+                    <label for="minPriceField">мин. цена:</label>
+                    <input class="form-control" type="number" ng-model="filter.min_price" id="minPriceField">
+                </td>
+                <td>
+                    <label for="maxPriceField">макс. цена:</label>
+                    <input class="form-control" type="number" ng-model="filter.max_price" id="maxPriceField">
+                </td>
+                <td>
+                    <label for="titleLikeField">название содержит:</label>
+                    <input class="form-control" type="text" ng-model="filter.titleLike" id="titleLikeField">
+                </td>
+                <td>
+                    <button class="btn btn-primary" type="submit"
+                    ">отфильтровать</button>
+                </td>
+            </tr>
+            </thead>
+        </table>
 
-    <p></p>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li ng-repeat="p in navList" class="page-item">
-                <a class="page-link" ng-click="loadPage(p)">{{p}}</a>
-            </li>
-        </ul>
-    </nav>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Название</td>
+                <td>Цена</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in productsPage.content">
+                <td>{{p.id}}</td>
+                <td>{{p.title}}</td>
+                <td>{{p.price}}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="addToCart(p.id)">В корзину</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p></p>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li ng-repeat="p in navList" class="page-item">
+                    <a class="page-link" ng-click="loadPage(p)">{{p}}</a>
+                </li>
+            </ul>
+        </nav>
 </div>
