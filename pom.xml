@@ -110,8 +110,7 @@
 				</executions>
 				<configuration>
 					<sources>
-						<source>${project.basedir}/src/main/resources/groups.xsd</source>
-						<source>${project.basedir}/src/main/resources/students.xsd</source>
+						<source>${project.basedir}/src/main/resources/products.xsd</source>
 					</sources>
 					<!--					<packageName>soap</packageName>-->
 					<!--					<outputDirectory>${project.basedir}/src/main/java/com/flamexander/spring/ws/soap</outputDirectory>-->
