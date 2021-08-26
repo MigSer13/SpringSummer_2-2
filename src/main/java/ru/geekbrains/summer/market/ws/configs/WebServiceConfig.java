@@ -29,7 +29,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ProductsPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.myhome.ru/geekbrains/summer/market/ws/products");
+        wsdl11Definition.setTargetNamespace("http://www.ru/geekbrains/summer/market/ws/products");
         wsdl11Definition.setSchema(productsXsdSchema);
         return wsdl11Definition;
     }

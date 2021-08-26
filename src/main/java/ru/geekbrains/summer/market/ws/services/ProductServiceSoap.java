@@ -3,26 +3,24 @@ package ru.geekbrains.summer.market.ws.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.summer.market.ws.entities.ProductEntity;
-import ru.geekbrains.summer.market.ws.repositories.ProductRepository;
+import ru.geekbrains.summer.market.ws.repositories.ProductRepositorySoap;
 import ru.geekbrains.summer.market.ws.soap.products.Product;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
-    private final ProductRepository productRepository;
+public class ProductServiceSoap {
+    private final ProductRepositorySoap productRepositorySoap;
 
     public Product getById(Long id){
-        return productRepository.findById(id).map(functionEntityToSoap).get();
+        return productRepositorySoap.findById(id).map(functionEntityToSoap).get();
     }
 
     public List<Product> getAllProducts(){
-        return productRepository.findAll().stream().map(functionEntityToSoap).collect(Collectors.toList());
+        return productRepositorySoap.findAll().stream().map(functionEntityToSoap).collect(Collectors.toList());
     }
 
     public static final Function<ProductEntity, Product> functionEntityToSoap = productEntity -> {

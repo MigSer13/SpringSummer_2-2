@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://www.myhome.ru/geekbrains/summer/market/ws/products"
-        targetNamespace="http://www.myhome.ru/geekbrains/summer/market/ws/products" elementFormDefault="qualified">
+        xmlns:tns="http://www.ru/geekbrains/summer/market/ws/products"
+        targetNamespace="http://www.ru/geekbrains/summer/market/ws/products" elementFormDefault="qualified">
 
     <xs:element name="getAllProductsRequest">
         <xs:complexType/>
