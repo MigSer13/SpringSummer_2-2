@@ -1,4 +1,4 @@
-package ru.geekbrains.summer.market.configs;
+package ru.geekbrains.summer.market.ws.configs;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -29,14 +29,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ProductsPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://www.myhome.ru/geekbrains/summer/market/products");
+        wsdl11Definition.setTargetNamespace("http://www.myhome.ru/geekbrains/summer/market/ws/products");
         wsdl11Definition.setSchema(productsXsdSchema);
         return wsdl11Definition;
     }
 
     @Bean
     public XsdSchema productsXsdSchema(){
-        return new SimpleXsdSchema(new ClassPathResource("product.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("products.xsd"));
     }
 
 }
